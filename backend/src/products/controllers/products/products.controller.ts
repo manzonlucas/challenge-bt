@@ -1,4 +1,5 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post, Req, Res } from '@nestjs/common';
+import { Request, Response } from 'express';
 
 @Controller('products')
 export class ProductsController {
@@ -15,5 +16,11 @@ export class ProductsController {
   @Get('orderByPrice')
   getProductsByPrice() {
     return 'products in a certain date range AND a category, ordered by highest PRICE to lower';
+  }
+
+  @Post()
+  createProduct(@Req() request: Request, @Res() response: Response) {
+    console.log(request.body);
+    response.send('Creation successful!');
   }
 }
