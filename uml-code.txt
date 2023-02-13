@@ -1,0 +1,20 @@
+@startuml
+
+class Product {
+    - id (PK): int
+    - name: char(100)
+    - stock: int
+    - price: decimal(10, 2)
+    - creationDate: date
+    - category (FK): categoria_id
+}
+
+class Category {
+    - id (PK): int
+    - name: char(100)
+}
+
+
+Category *- Product: 1 category, n products
+
+@enduml
