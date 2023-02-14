@@ -1,5 +1,4 @@
-import { Body, Controller, Get, Post, Req, Res } from '@nestjs/common';
-import { Request, Response } from 'express';
+import { Body, Controller, Get, Post, Query, Param } from '@nestjs/common';
 import { CreateProductDto } from 'src/products/dtos/createProduct.dto';
 
 @Controller('products')
@@ -9,14 +8,18 @@ export class ProductsController {
     return [{ name: 'Product1 test', price: 5 }];
   }
 
-  @Get('orderByStock')
-  getProductsByStock() {
-    return 'products in a certain date range AND a category, ordered by highest STOCK to lower';
-  }
+  @Get('/sorted')
+  getProductsByRange(
+    @Query('startDate') startDate: string,
+    @Query('endDate') endDate: string,
+    @Query('category') category: string,
+    @Query('sortBy') sortBy: string,
+  ) {
+    console.log(startDate, endDate, category, sortBy);
 
-  @Get('orderByPrice')
-  getProductsByPrice() {
-    return 'products in a certain date range AND a category, ordered by highest PRICE to lower';
+    // example route for this endpoint
+    // http://localhost:3001/products/sorted?startDate=08-03-1993&endDate=13-02-2023&category=food&sortBy=price
+    return `products from ${startDate} to ${endDate} in the category ${category}, ordered by highest ${sortBy} to lower`;
   }
 
   @Post()
