@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { ProductsModule } from './products/products.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -10,8 +10,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'boxtracker123',
-      database: 'boxtracker_challenge',
+      password: 'btchallenge',
+      database: 'challenge_bt',
+      entities: [],
+      synchronize: true,
     }),
   ],
   controllers: [],
