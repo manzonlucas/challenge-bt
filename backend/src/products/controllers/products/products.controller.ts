@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Post, Query, Param } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Query,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { CreateProductDto } from 'src/products/dtos/createProduct.dto';
 
 @Controller('products')
@@ -21,8 +29,9 @@ export class ProductsController {
   }
 
   @Post()
+  @UsePipes(new ValidationPipe())
   createProduct(@Body() productData: CreateProductDto) {
     console.log(productData);
-    return 'DTO added, post successful';
+    return productData;
   }
 }
