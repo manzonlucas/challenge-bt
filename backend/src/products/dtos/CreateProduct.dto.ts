@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsDecimal } from 'class-validator';
+import { IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateProductDto {
   id: number;
