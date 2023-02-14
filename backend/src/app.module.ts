@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductsModule } from './products/products.module';
+import { Product } from './typeorm/entities/Product';
 
 @Module({
   imports: [
@@ -12,7 +13,7 @@ import { ProductsModule } from './products/products.module';
       username: 'root',
       password: 'btchallenge',
       database: 'challenge_bt',
-      entities: [],
+      entities: [Product],
       synchronize: true,
     }),
   ],
