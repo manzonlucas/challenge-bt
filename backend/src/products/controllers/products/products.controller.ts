@@ -1,5 +1,6 @@
-import { Controller, Get, Post, Req, Res } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, Res } from '@nestjs/common';
 import { Request, Response } from 'express';
+import { CreateProductDto } from 'src/products/dtos/createProduct.dto';
 
 @Controller('products')
 export class ProductsController {
@@ -19,8 +20,8 @@ export class ProductsController {
   }
 
   @Post()
-  createProduct(@Req() request: Request, @Res() response: Response) {
-    console.log(request.body);
-    response.send('Creation successful!');
+  createProduct(@Body() productData: CreateProductDto) {
+    console.log(productData);
+    return 'DTO added, post successful';
   }
 }
