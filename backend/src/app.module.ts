@@ -11,7 +11,7 @@ import { Product } from './typeorm/entities/Product';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'btchallenge',
+      password: 'lucas',
       database: 'challenge_bt',
       entities: [Product],
       synchronize: true,
