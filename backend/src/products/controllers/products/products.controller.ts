@@ -9,17 +9,15 @@ export class ProductsController {
   }
 
   @Get('/sorted')
-  getProductsByRange(
-    @Query('startDate') startDate: string,
-    @Query('endDate') endDate: string,
-    @Query('category') category: string,
-    @Query('sortBy') sortBy: string,
-  ) {
-    console.log(startDate, endDate, category, sortBy);
+  getProductsByRange(@Query() query) {
+    console.log(query.startDate);
+    console.log(query.endDate);
+    console.log(query.category);
+    console.log(query.sortBy);
 
     // example route for this endpoint
     // http://localhost:3001/products/sorted?startDate=08-03-1993&endDate=13-02-2023&category=food&sortBy=price
-    return `products from ${startDate} to ${endDate} in the category ${category}, ordered by highest ${sortBy} to lower`;
+    return `products from ${query.startDate} to ${query.endDate} in the category ${query.category}, ordered by highest ${query.sortBy} to lower`;
   }
 
   @Post()
