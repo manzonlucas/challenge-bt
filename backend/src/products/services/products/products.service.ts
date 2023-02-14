@@ -21,7 +21,11 @@ export class ProductsService {
   }
 
   createProduct(productDetails: CreateProductDto) {
-    this.fakeProducts.push(productDetails);
-    return 'success';
+    // this.fakeProducts.push(productDetails);
+    const newProduct = this.productRepository.create({
+      ...productDetails,
+      creationDate: new Date(),
+    });
+    return this.productRepository.save(newProduct);
   }
 }
