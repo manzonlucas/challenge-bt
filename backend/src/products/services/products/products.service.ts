@@ -20,6 +20,30 @@ export class ProductsService {
       .getMany();
   }
 
+  fetchProductsByDateRangeByCategorySortedBy(
+    category: number,
+    startDate: Date,
+    endDate: Date,
+    sortBy: string,
+  ) {
+    return this.productRepository
+      .createQueryBuilder('product')
+      .where(`product.category = ${category}`)
+      .andWhere(
+        `product.creationDate BETWEEN 
+        '${startDate.toISOString()}' 
+        AND
+        '${endDate.toISOString()}'`,
+      )
+      .orderBy(sortBy, 'DESC')
+      .setParameters({
+        category,
+        startDate,
+        endDate,
+      })
+      .getMany();
+  }
+
   async createProduct(productDetails: CreateProductDto) {
     const category = await this.categoryRepository.findOneBy({
       id: productDetails.category,
