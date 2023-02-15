@@ -18,5 +18,5 @@ export class Product {
   creationDate: Date;
 
   @Column()
-  category: number;
+  category_id: number;
 }
