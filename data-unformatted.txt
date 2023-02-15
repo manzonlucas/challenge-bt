@@ -1,0 +1,35 @@
+Materiales de construcción:
+
+Cemento
+Arena
+Grava
+Ladrillos
+Bloques de concreto
+Metales:
+6. Acero
+
+Hierro
+Aluminio
+Cobre
+Plomo
+Productos químicos:
+11. Ácidos y bases
+
+Solventes
+Aditivos
+Colorantes
+Conservantes
+Electrónica:
+16. Circuitos integrados
+
+Resistencias
+Condensadores
+Diodos
+Transistores
+Herramientas y equipos:
+21. Sierras
+
+Taladros
+Herramientas manuales
+Maquinaria pesada
+Equipos de seguridad
