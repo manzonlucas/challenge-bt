@@ -15,7 +15,6 @@ export class Product {
   @Column()
   stock: number;
 
-  // @Column({ type: 'datetime' })
   @Column()
   creationDate: Date;
 

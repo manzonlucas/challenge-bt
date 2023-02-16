@@ -7,36 +7,28 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { query } from 'express';
 import { CreateProductDto } from 'src/products/dtos/createProduct.dto';
 import { ProductsService } from 'src/products/services/products/products.service';
 
 @Controller('products')
 export class ProductsController {
-  constructor(private productsService: ProductsService) {}
+  constructor(private productService: ProductsService) {}
 
   @Get()
   getProducts() {
-    return this.productsService.fetchProducts();
+    return this.productService.fetchProducts();
   }
 
-  // example route with the correct query format:
-  // http://localhost:3001/products/sort?startDate=2015-03-08&endDate=2030-03-08&category=1&sortBy=price
-  @Get('/sort')
-  async getProductsByDateRangeByCategorySortedBy(@Query() query) {
-    const products =
-      await this.productsService.fetchProductsByDateRangeByCategorySortedBy(
-        query.category,
-        new Date(query.startDate),
-        new Date(query.endDate),
-        query.sortBy,
-      );
-    return products;
+  @Get('/sorted')
+  getProductsByRange(@Query() query) {
+    // example route for this endpoint
+    // http://localhost:3001/products/sorted?startDate=08-03-1993&endDate=13-02-2023&category=food&sortBy=price
+    return `products from ${query.startDate} to ${query.endDate} in the category ${query.category}, ordered by highest ${query.sortBy} to lower`;
   }
 
   @Post()
   @UsePipes(new ValidationPipe())
   createProduct(@Body() productData: CreateProductDto) {
-    return this.productsService.createProduct(productData);
+    return this.productService.createProduct(productData);
   }
 }
