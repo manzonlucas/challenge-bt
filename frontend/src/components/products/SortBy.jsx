@@ -21,12 +21,16 @@ export default function SortBy() {
       setErrorMsg(error.response.data.message);
     }
   }
-  // http://localhost:3001/products/sort?startDate=&endDate=&category=2&sortBy=stock 
+
+  // Query format:
   // http://localhost:3001/products/sort?startDate=2015-03-08&endDate=2030-03-08&category=1&sortBy=stock
   async function getProductsSortedBy() {
     try {
       const response = await axios.get(`${baseUrl}/products/sort?startDate=${payload.startDate}&endDate=${payload.endDate}&category=${payload.category}&sortBy=${payload.sortBy}`);
       console.log(response.data);
+      setPayload({ sortBy: 'stock', category: 1, startDate: '', endDate: '' });
+      cleanForm();
+      setErrorMsg(null);
     } catch (error) {
       console.log(error);
       setErrorMsg(error.response.data.message);
@@ -39,15 +43,14 @@ export default function SortBy() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(payload);
     getProductsSortedBy(payload);
   }
 
   function cleanForm() {
-    document.getElementById('name').value = '';
-    document.getElementById('price').value = '';
-    document.getElementById('stock').value = '';
+    document.getElementById('sortBy').value = 'stock';
     document.getElementById('category').value = 1;
+    document.getElementById('startDate').value = '';
+    document.getElementById('endDate').value = '';
   }
 
   return (
