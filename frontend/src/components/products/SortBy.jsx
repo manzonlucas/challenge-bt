@@ -1,12 +1,23 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { baseUrl } from '../../services/api';
+import { Chart } from "react-google-charts";
 
 export default function SortBy() {
 
-  const [payload, setPayload] = useState({ sortBy: 'stock', category: 1, startDate: '', endDate: '' });
+  const [payload, setPayload] = useState({ sortBy: 'stock', category: 1, startDate: new Date(), endDate: new Date() });
   const [categories, setCategories] = useState([]);
-  const [errorMsg, setErrorMsg] = useState('');
+  const [products, setProducts] = useState(null);
+  const [chartData, setChartData] = useState([]);
+
+  const data = [
+    ["Task", "Hours per Day"],
+    ["Work", 11],
+    ["Eat", 2],
+    ["Commute", 2],
+    ["Watch TV", 2],
+    ["Sleep", 7],
+  ];
 
   useEffect(() => {
     getCategories();
@@ -18,7 +29,6 @@ export default function SortBy() {
       setCategories(response.data);
     } catch (error) {
       console.log(error);
-      setErrorMsg(error.response.data.message);
     }
   }
 
@@ -27,13 +37,11 @@ export default function SortBy() {
   async function getProductsSortedBy() {
     try {
       const response = await axios.get(`${baseUrl}/products/sort?startDate=${payload.startDate}&endDate=${payload.endDate}&category=${payload.category}&sortBy=${payload.sortBy}`);
+      setProducts(response.data);
       console.log(response.data);
       setPayload({ sortBy: 'stock', category: 1, startDate: '', endDate: '' });
-      cleanForm();
-      setErrorMsg(null);
     } catch (error) {
       console.log(error);
-      setErrorMsg(error.response.data.message);
     }
   }
 
@@ -41,17 +49,23 @@ export default function SortBy() {
     setPayload({ ...payload, [e.target.id]: e.target.value });
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     getProductsSortedBy(payload);
+
+    let chartArray = [['Product', payload.sortBy]]
+    products.map(product => {
+      return chartArray.push([product.name, product.stock]);
+    })
+    console.log(chartArray);
+    setChartData(chartArray);
   }
 
-  function cleanForm() {
-    document.getElementById('sortBy').value = 'stock';
-    document.getElementById('category').value = 1;
-    document.getElementById('startDate').value = '';
-    document.getElementById('endDate').value = '';
-  }
+  const options = {
+    is3D: true,
+    backgroundColor: { fill: 'transparent' }
+  };
+
 
   return (
     <section>
@@ -92,16 +106,17 @@ export default function SortBy() {
         </button>
 
       </form>
-
       <article>
-        <p>GRAFICO</p>
-        {
-          errorMsg ?
-            <div className="bg-red-200 rounded-md px-6 py-2 text-red-500 text-center font-bold">
-              <p>Error creating the product:</p>
-              <p>{errorMsg}</p>
-            </div>
-            : ''
+
+        {products ?
+          <Chart
+            chartType="PieChart"
+            data={chartData}
+            options={options}
+            width={"100%"}
+            height={"400px"}
+          />
+          : 'no products'
         }
       </article>
     </section>
