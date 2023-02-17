@@ -39,7 +39,7 @@ export default function ProductsView() {
         <button onClick={handleSetViewSort} className={`bg-indigo-50 rounded-md px-10 py-2 ${!viewAllProducts ? 'active' : ''}`}>Sort by</button>
       </nav>
 
-      <div className="bg-indigo-50 bg-opacity-50 w-4/6 m-auto p-4 rounded-md">
+      <div className="bg-indigo-50 bg-opacity-50 w-4/6 m-auto p-4 rounded-md mb-4">
 
         {viewAllProducts ?
           <ListAll products={products} />

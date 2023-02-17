@@ -7,6 +7,7 @@ export default function CreateProduct() {
 
   const [payload, setPayload] = useState({ category: 1 });
   const [categories, setCategories] = useState([]);
+  const [errorMsg, setErrorMsg] = useState('');
 
   useEffect(() => {
     getCategories();
@@ -18,6 +19,7 @@ export default function CreateProduct() {
       setCategories(response.data);
       console.log(categories);
     } catch (error) {
+      setErrorMsg(error);
       console.log(error);
     }
   }
@@ -36,7 +38,8 @@ export default function CreateProduct() {
     try {
       const response = await axios.post(`${baseUrl}/products`, product,
         { headers: { "Content-Type": 'application/json' } });
-      console.log(response.data);
+      console.log(response);
+      cleanForm();
 
     } catch (error) {
       console.log(error);
@@ -47,6 +50,13 @@ export default function CreateProduct() {
     e.preventDefault();
     // console.log(payload);
     postProduct(payload);
+  }
+
+  function cleanForm() {
+    document.getElementById('name').value = '';
+    document.getElementById('price').value = '';
+    document.getElementById('stock').value = '';
+    document.getElementById('category').value = 1;
   }
 
   return (
@@ -88,7 +98,13 @@ export default function CreateProduct() {
            hover:text-indigo-50 hover:bg-sky-500'>
             Submit
           </button>
+
+          {errorMsg ?
+            <p className="bg-red-200 rounded-md px-6 py-2 text-red-500 text-center font-bold">Error connecting to database</p>
+            : ''}
         </form>
+
+
       </div>
     </Layout>
   )
