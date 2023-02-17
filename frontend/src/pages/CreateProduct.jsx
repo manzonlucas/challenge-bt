@@ -5,7 +5,7 @@ import { baseUrl } from '../services/api';
 
 export default function CreateProduct() {
 
-  const [payload, setPayload] = useState({});
+  const [payload, setPayload] = useState({ category: 1 });
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -23,12 +23,30 @@ export default function CreateProduct() {
   }
 
   function handleChangeForm(e) {
-    setPayload({ ...payload, [e.target.id]: e.target.value });
-    console.log(payload);
+
+    if (e.target.type === 'number' || e.target.type === 'select-one') {
+      setPayload({ ...payload, [e.target.id]: parseInt(e.target.value) });
+    }
+    else {
+      setPayload({ ...payload, [e.target.id]: e.target.value });
+    }
+  }
+
+  async function postProduct(product) {
+    try {
+      const response = await axios.post(`${baseUrl}/products`, product,
+        { headers: { "Content-Type": 'application/json' } });
+      console.log(response.data);
+
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   function handleSubmit(e) {
     e.preventDefault();
+    // console.log(payload);
+    postProduct(payload);
   }
 
   return (
@@ -36,7 +54,7 @@ export default function CreateProduct() {
     <Layout>
       <div className="bg-indigo-50 bg-opacity-50 w-4/6 m-auto p-4 rounded-md mt-4" onSubmit={handleSubmit}>
 
-        <h2>Create new product</h2>
+        <h2 className="text-center text-2xl">Create new product</h2>
 
         <form action="" className="flex flex-col gap-4">
 
