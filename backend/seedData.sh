@@ -40,16 +40,6 @@ CATEGORIES_SQL="CREATE TABLE IF NOT EXISTS categories (
 # Execute SQL query using the mysql command
 mysql -u "$MYSQL_USER" -p"$MYSQL_PASSWORD" "$MYSQL_DATABASE" -e "$CATEGORIES_SQL"
 
-# Define SQL query to insert data into the my_table table
-MY_TABLE_SQL="INSERT INTO categories (id, name) VALUES
-  (1, 'John Doe'),
-  (2, 'Jane Doe'),
-  (3, 'Bob Smith'),
-  (4, 'Alice Johnson');"
-
-# Execute SQL query using the mysql command
-mysql -u "$MYSQL_USER" -p"$MYSQL_PASSWORD" "$MYSQL_DATABASE" -e "$MY_TABLE_SQL"
-
 # Define SQL query to insert data into the categories table
 CATEGORIES_DATA_SQL="INSERT INTO categories (name) VALUES
   ('Category 1'),
