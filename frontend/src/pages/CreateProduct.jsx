@@ -8,6 +8,7 @@ export default function CreateProduct() {
   const [payload, setPayload] = useState({ category: 1 });
   const [categories, setCategories] = useState([]);
   const [errorMsg, setErrorMsg] = useState('');
+  const [successMsg, setSuccessMsg] = useState('');
 
   useEffect(() => {
     getCategories();
@@ -17,10 +18,9 @@ export default function CreateProduct() {
     try {
       const response = await axios.get(`${baseUrl}/categories`);
       setCategories(response.data);
-      console.log(categories);
     } catch (error) {
-      setErrorMsg(error);
       console.log(error);
+      setErrorMsg(error.response.data.message);
     }
   }
 
@@ -39,16 +39,20 @@ export default function CreateProduct() {
       const response = await axios.post(`${baseUrl}/products`, product,
         { headers: { "Content-Type": 'application/json' } });
       console.log(response);
+      setPayload({ category: 1 });
       cleanForm();
+      setSuccessMsg('Product created successfully');
+      setErrorMsg(null);
 
     } catch (error) {
       console.log(error);
+      setErrorMsg(error.response.data.message);
+      setSuccessMsg('');
     }
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    // console.log(payload);
     postProduct(payload);
   }
 
@@ -100,12 +104,20 @@ export default function CreateProduct() {
           </button>
 
           {errorMsg ?
-            <p className="bg-red-200 rounded-md px-6 py-2 text-red-500 text-center font-bold">Error connecting to database</p>
+            <div className="bg-red-200 rounded-md px-6 py-2 text-red-500 text-center font-bold">
+              <p>Error creating the product:</p>
+              <p>{errorMsg}</p>
+            </div>
             : ''}
+
+          {
+            successMsg ?
+              <div className="bg-green-200 rounded-md px-6 py-2 text-green-500 text-center font-bold">
+                <p>{successMsg}</p>
+              </div>
+              : ''}
         </form>
-
-
-      </div>
-    </Layout>
+      </div >
+    </Layout >
   )
 }
