@@ -1,14 +1,14 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import CreateProduct from './pages/CreateProduct';
 import Home from './pages/Home';
-import ViewProducts from './pages/ViewProducts';
+import ProductsView from './pages/ProductsView';
+import CreateProduct from './pages/CreateProduct';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />}></Route>
-        <Route path='/products' element={<ViewProducts />}></Route>
+        <Route path='/products' element={<ProductsView />}></Route>
         <Route path='/create' element={<CreateProduct />}></Route>
       </Routes>
     </BrowserRouter >
