@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
-import Layout from "../../components/Layout";
 import axios from "axios";
 import { baseUrl } from '../../services/api';
 
 export default function SortBy() {
 
-  const [payload, setPayload] = useState({ category: 1 });
+  const [payload, setPayload] = useState({ sortBy: 'stock', category: 1, startDate: '', endDate: '' });
   const [categories, setCategories] = useState([]);
   const [errorMsg, setErrorMsg] = useState('');
-  const [successMsg, setSuccessMsg] = useState('');
 
   useEffect(() => {
     getCategories();
@@ -23,37 +21,26 @@ export default function SortBy() {
       setErrorMsg(error.response.data.message);
     }
   }
-
-  function handleChangeForm(e) {
-
-    if (e.target.type === 'number' || e.target.type === 'select-one') {
-      setPayload({ ...payload, [e.target.id]: parseInt(e.target.value) });
-    }
-    else {
-      setPayload({ ...payload, [e.target.id]: e.target.value });
-    }
-  }
-
-  async function postProduct(product) {
+  // http://localhost:3001/products/sort?startDate=&endDate=&category=2&sortBy=stock 
+  // http://localhost:3001/products/sort?startDate=2015-03-08&endDate=2030-03-08&category=1&sortBy=stock
+  async function getProductsSortedBy() {
     try {
-      const response = await axios.post(`${baseUrl}/products`, product,
-        { headers: { "Content-Type": 'application/json' } });
-      console.log(response);
-      setPayload({ category: 1 });
-      cleanForm();
-      setSuccessMsg('Product created successfully');
-      setErrorMsg(null);
-
+      const response = await axios.get(`${baseUrl}/products/sort?startDate=${payload.startDate}&endDate=${payload.endDate}&category=${payload.category}&sortBy=${payload.sortBy}`);
+      console.log(response.data);
     } catch (error) {
       console.log(error);
       setErrorMsg(error.response.data.message);
-      setSuccessMsg('');
     }
+  }
+
+  function handleChangeForm(e) {
+    setPayload({ ...payload, [e.target.id]: e.target.value });
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    postProduct(payload);
+    console.log(payload);
+    getProductsSortedBy(payload);
   }
 
   function cleanForm() {
@@ -66,7 +53,7 @@ export default function SortBy() {
   return (
     <section>
 
-      <form action="" className="flex gap-4 justify-evenly">
+      <form action="" className="flex gap-4 justify-evenly" onSubmit={handleSubmit}>
         <article className="flex flex-col w-1/5">
           <label htmlFor="sortBy">Sort by</label>
           <select name="sortBy" id="sortBy" className="bg-indigo-50 rounded-md px-2 py-2 shadow-lg" onChange={handleChangeForm}>
@@ -77,12 +64,12 @@ export default function SortBy() {
 
         <div className="flex flex-col w-1/5">
           <label htmlFor="from">From</label>
-          <input type="date" id="from" className="bg-indigo-50 rounded-md px-2 py-2 shadow-lg" onChange={handleChangeForm} />
+          <input type="date" id="startDate" className="bg-indigo-50 rounded-md px-2 py-2 shadow-lg" onChange={handleChangeForm} />
         </div>
 
         <div className="flex flex-col w-1/5">
           <label htmlFor="to">To</label>
-          <input type="date" id="to" className="bg-indigo-50 rounded-md px-2 py-2 shadow-lg" onChange={handleChangeForm} />
+          <input type="date" id="endDate" className="bg-indigo-50 rounded-md px-2 py-2 shadow-lg" onChange={handleChangeForm} />
         </div>
 
         <article className="flex flex-col w-1/5">
