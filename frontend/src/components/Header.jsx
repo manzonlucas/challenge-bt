@@ -1,27 +1,38 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Header() {
   const underlineOnHoverClass = 'group transition duration-300';
   const underlineOnHoverSpan = <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-sky-600"></span>;
-  const linkClass = `p-4 text-lg ${underlineOnHoverClass}`;
+  const linkBaseClass = 'p-4 text-lg';
 
 
   return (
     <header className="bg-indigo-50 flex justify-center">
       <nav className="w-2/5 flex justify-around">
-        <Link className={linkClass} to={'/'}>
+
+        <NavLink to='/' className={(navData) => (navData.isActive ?
+          `${linkBaseClass} active` :
+          `${linkBaseClass} ${underlineOnHoverClass}`)}>
           Home
           {underlineOnHoverSpan}
-        </Link>
-        <Link className={linkClass} to={'/products'}>
+        </NavLink>
+
+
+        <NavLink to='/products' className={(navData) => (navData.isActive ?
+          `${linkBaseClass} active` :
+          `${linkBaseClass} ${underlineOnHoverClass}`)}>
           Products
           {underlineOnHoverSpan}
-        </Link>
-        <Link className={linkClass} to={'/create'}>
+        </NavLink>
+
+        <NavLink to='/create' className={(navData) => (navData.isActive ?
+          `${linkBaseClass} active` :
+          `${linkBaseClass} ${underlineOnHoverClass}`)}>
           Create
           {underlineOnHoverSpan}
-        </Link>
+        </NavLink>
+
       </nav>
-    </header>
+    </header >
   )
 }
