@@ -34,7 +34,7 @@ export default function ProductsView() {
   return (
     <Layout>
 
-      <nav className=" flex justify-around m-auto w-2/5 text-lg p-4">
+      <nav className="flex justify-around m-auto w-2/5 text-lg p-4">
         <button onClick={handleSetViewAll} className={`bg-indigo-50 rounded-md px-10 py-2 ${viewAllProducts ? 'active' : ''}`}>View all</button>
         <button onClick={handleSetViewSort} className={`bg-indigo-50 rounded-md px-10 py-2 ${!viewAllProducts ? 'active' : ''}`}>Sort by</button>
       </nav>

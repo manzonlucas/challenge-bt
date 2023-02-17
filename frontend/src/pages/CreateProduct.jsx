@@ -38,26 +38,38 @@ export default function CreateProduct() {
 
         <h2>Create new product</h2>
 
-        <form action="" className="flex flex-col">
+        <form action="" className="flex flex-col gap-4">
 
-          <label htmlFor="name">Name</label>
-          <input type="text" id="name" className="bg-indigo-50 rounded-md px-2 py-2" onChange={handleChangeForm} />
+          <div className="flex flex-col">
+            <label htmlFor="name">Name</label>
+            <input type="text" id="name" className="bg-indigo-50 rounded-md px-2 py-2 shadow-lg" onChange={handleChangeForm} />
+          </div>
 
-          <label htmlFor="price">Price</label>
-          <input type="number" id="price" className="bg-indigo-50 rounded-md px-2 py-2" onChange={handleChangeForm} />
+          <div className="flex flex-col">
+            <label htmlFor="price">Price</label>
+            <input type="number" id="price" className="bg-indigo-50 rounded-md px-2 py-2 shadow-lg" onChange={handleChangeForm} />
+          </div>
 
-          <label htmlFor="stock">Stock</label>
-          <input type="number" id="stock" className="bg-indigo-50 rounded-md px-2 py-2" onChange={handleChangeForm} />
+          <div className="flex flex-col">
+            <label htmlFor="stock">Stock</label>
+            <input type="number" id="stock" className="bg-indigo-50 rounded-md px-2 py-2 shadow-lg" onChange={handleChangeForm} />
+          </div>
 
-          <label htmlFor="category">Category</label>
-          <select name="category" id="category" className="bg-indigo-50 rounded-md px-2 py-2" onChange={handleChangeForm}>
-            {categories.map(category => {
-              return (
-                <option key={category.id} value={category.id}>{category.name}</option>
-              )
-            })}
-          </select>
-          <button>Submit</button>
+          <div className="flex flex-col">
+            <label htmlFor="category">Category</label>
+            <select name="category" id="category" className="bg-indigo-50 rounded-md px-2 py-2 shadow-lg" onChange={handleChangeForm}>
+              {categories.map(category => {
+                return (
+                  <option key={category.id} value={category.id}>{category.name}</option>
+                )
+              })}
+            </select>
+          </div>
+
+          <button className='bg-indigo-50 rounded-md px-6 py-2 w-32 m-auto font-bold shadow-2xl
+           hover:text-indigo-50 hover:bg-sky-500'>
+            Submit
+          </button>
         </form>
       </div>
     </Layout>

@@ -1,5 +1,5 @@
 
-import { formatDate } from "../../components/utils/formatDate";
+import { formatDate } from "../../utils/formatDate";
 
 export default function ListAll({ products }) {
   return (
