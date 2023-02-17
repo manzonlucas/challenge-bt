@@ -66,11 +66,11 @@ export default function CreateProduct() {
   return (
 
     <Layout>
-      <div className="bg-indigo-50 bg-opacity-50 w-4/6 m-auto p-4 rounded-md mt-4" onSubmit={handleSubmit}>
+      <div className="bg-indigo-50 bg-opacity-50 w-4/6 m-auto p-4 rounded-md mt-4">
 
         <h2 className="text-center text-2xl">Create new product</h2>
 
-        <form action="" className="flex flex-col gap-4">
+        <form action="" className="flex flex-col gap-4" onSubmit={handleSubmit}>
 
           <div className="flex flex-col">
             <label htmlFor="name">Name</label>
