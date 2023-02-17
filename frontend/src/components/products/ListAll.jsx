@@ -3,7 +3,7 @@ import { formatDate } from "../../components/utils/formatDate";
 
 export default function ListAll({ products }) {
   return (
-    <section className="flex flex-col gap-2 w-4/6 m-auto">
+    <section className="flex flex-col gap-2 w-full m-auto">
       <article className='bg-indigo-50 p-2 rounded-md flex font-bold'>
         <span className="w-2/6 border-r-2 border-r-gray-200">Name</span>
         <span className="w-1/6 border-r-2 border-r-gray-200 text-center">Price</span>
