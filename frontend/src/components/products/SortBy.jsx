@@ -116,7 +116,7 @@ export default function SortBy() {
             width={"100%"}
             height={"400px"}
           />
-          : 'no products'
+          : ''
         }
       </article>
     </section>

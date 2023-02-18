@@ -26,6 +26,7 @@ export default function Home() {
             <li>Create products and persist them on the database</li>
             <li>Filter products by stock or price and creation date within certain category</li>
             <li>Success or error messages when requesting data from the backend</li>
+            <li>Loading spinner on products page</li>
           </ul>
 
           <br />
