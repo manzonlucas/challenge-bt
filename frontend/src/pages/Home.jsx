@@ -3,9 +3,9 @@ import Layout from "../components/Layout";
 export default function Home() {
   return (
     <Layout>
-      <section className="text-center flex flex-col items-center gap-10 bg-indigo-50 bg-opacity-50 w-4/6 m-auto p-4 rounded-md mb-4 h-3/4 mt-4">
+      <section className="text-center flex flex-col items-center gap-10 bg-indigo-50 bg-opacity-50 w-4/6 m-auto p-4 rounded-md mb-4 mt-4">
         <div>
-          <h1 className="text-6xl p-4">BT Challenge</h1>
+          <h1 className="text-6xl mb-4">BT Challenge</h1>
           <p>Objective-guided project developed by <b>Lucas Matías Manzón</b>, for applying for a position as a Front End Developer in a freelance project.</p>
         </div>
         <div>
