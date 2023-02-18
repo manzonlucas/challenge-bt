@@ -66,6 +66,9 @@ export default function SortBy() {
     backgroundColor: { fill: 'transparent' }
   };
 
+  function handleReset() {
+    setChartData([]);
+  }
 
   return (
     <section>
@@ -104,6 +107,14 @@ export default function SortBy() {
            hover:text-indigo-50 hover:bg-sky-500'>
           Submit
         </button>
+
+        <button className='bg-indigo-50 rounded-md px-6 py-2 w-1/5 m-auto mb-1 font-bold shadow-2xl
+           hover:text-indigo-50 hover:bg-sky-500'
+          onClick={handleReset}
+        >
+          Reset
+        </button>
+
 
       </form>
       <article>

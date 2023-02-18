@@ -38,6 +38,10 @@ export default function Home() {
             <li><a href="https://www.react-google-charts.com/" className="underline">React Google Charts</a></li>
             <li><a href="class-validator" className="underline">NestJs class validator</a></li>
           </ul>
+
+          <br />
+
+          <p className="text-sm">*date format used on products page is Argentina actual one (dd/mm/yyyy)*</p>
         </div>
       </section>
     </Layout >

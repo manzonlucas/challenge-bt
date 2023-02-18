@@ -5,31 +5,31 @@ Arena
 Grava
 Ladrillos
 Bloques de concreto
-Metales:
-6. Acero
 
+Metales:
 Hierro
 Aluminio
 Cobre
 Plomo
-Productos químicos:
-11. Ácidos y bases
+Acero
 
+Productos químicos:
 Solventes
 Aditivos
 Colorantes
 Conservantes
-Electrónica:
-16. Circuitos integrados
+Acidos
 
+Electrónica:
+Circuitos integrados
 Resistencias
 Condensadores
 Diodos
 Transistores
-Herramientas y equipos:
-21. Sierras
 
+Herramientas:
 Taladros
-Herramientas manuales
+Sierras
 Maquinaria pesada
 Equipos de seguridad
+Destornilladores
