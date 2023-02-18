@@ -7,7 +7,7 @@ Proyecto desarrollado por Lucas Matías Manzón para aplicar a un puesto en un p
 - Tener instalado Bash Shell CLI.
 
 ### SET UP:
-Modificar el codigo, seteando las credenciales (username y password) correspondientes de MySQL en:
+Modificar el codigo del siguiente archivo, seteando las credenciales (username y password) correspondientes al usuario de MySQL en:
 `backend/src/app.module.ts` => linea 16 y 17.
 
 ### SET UP BACKEND Y DB:
