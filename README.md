@@ -1,5 +1,7 @@
 # Challenge-BT
 Proyecto desarrollado por Lucas Matías Manzón para aplicar a un puesto en un proyecto freelance frontend.
+Utilizando las siguientes tecnologias: React, NodeJS (NestJS), y MySQL.
+Desarrollado en 5 días, en momentos libres luego del trabajo.
 
 ### PRE REQUISITOS:
 - Tener instalado MySQL Server y agregado al PATH.
