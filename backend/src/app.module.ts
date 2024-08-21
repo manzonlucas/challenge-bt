@@ -11,11 +11,11 @@ import { Category } from './typeorm/entities/Category';
     CategoriesModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'lucas',
-      database: 'challenge_bt',
+      host: 'mysql-42c7a53-challenge-bt.l.aivencloud.com',
+      port: 19869,
+      username: 'avnadmin',
+      password: '',
+      database: 'defaultdb',
       entities: [Product, Category],
       synchronize: true,
     }),
@@ -23,4 +23,4 @@ import { Category } from './typeorm/entities/Category';
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule { }
