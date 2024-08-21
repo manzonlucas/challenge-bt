@@ -4,6 +4,9 @@ import { ProductsModule } from './products/products.module';
 import { Product } from './typeorm/entities/Product';
 import { CategoriesModule } from './categories/categories.module';
 import { Category } from './typeorm/entities/Category';
+import { WelcomeController } from './welcome/welcome.controller';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 @Module({
   imports: [
@@ -11,16 +14,16 @@ import { Category } from './typeorm/entities/Category';
     CategoriesModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'mysql-42c7a53-challenge-bt.l.aivencloud.com',
-      port: 19869,
-      username: 'avnadmin',
-      password: '',
-      database: 'defaultdb',
+      host: process.env.DB_HOST,
+      port: +process.env.DB_PORT,
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_DATABASE,
       entities: [Product, Category],
       synchronize: true,
     }),
   ],
-  controllers: [],
+  controllers: [WelcomeController],
   providers: [],
 })
 export class AppModule { }

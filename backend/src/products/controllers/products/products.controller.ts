@@ -17,8 +17,7 @@ export class ProductsController {
 
   @Get()
   getProducts() {
-    return { message: 'testing' }
-    // return this.productsService.fetchProducts();
+    return this.productsService.fetchProducts();
   }
 
   // example route with the correct query format:
