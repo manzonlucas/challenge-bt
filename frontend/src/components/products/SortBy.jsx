@@ -1,23 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { baseUrl } from '../../services/api';
+import { BASE_URL } from '../../services/api';
 import { Chart } from "react-google-charts";
 
 export default function SortBy() {
-
   const [payload, setPayload] = useState({ sortBy: 'stock', category: 1, startDate: new Date(), endDate: new Date() });
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState(null);
   const [chartData, setChartData] = useState([]);
-
-  const data = [
-    ["Task", "Hours per Day"],
-    ["Work", 11],
-    ["Eat", 2],
-    ["Commute", 2],
-    ["Watch TV", 2],
-    ["Sleep", 7],
-  ];
 
   useEffect(() => {
     getCategories();
@@ -25,7 +15,7 @@ export default function SortBy() {
 
   async function getCategories() {
     try {
-      const response = await axios.get(`${baseUrl}/categories`);
+      const response = await axios.get(`${BASE_URL}/categories`);
       setCategories(response.data);
     } catch (error) {
       console.log(error);
@@ -36,7 +26,7 @@ export default function SortBy() {
   // http://localhost:3001/products/sort?startDate=2015-03-08&endDate=2030-03-08&category=1&sortBy=stock
   async function getProductsSortedBy() {
     try {
-      const response = await axios.get(`${baseUrl}/products/sort?startDate=${payload.startDate}&endDate=${payload.endDate}&category=${payload.category}&sortBy=${payload.sortBy}`);
+      const response = await axios.get(`${BASE_URL}/products/sort?startDate=${payload.startDate}&endDate=${payload.endDate}&category=${payload.category}&sortBy=${payload.sortBy}`);
       setProducts(response.data);
       console.log(response.data);
       setPayload({ sortBy: 'stock', category: 1, startDate: '', endDate: '' });

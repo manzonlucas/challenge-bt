@@ -1,7 +1,7 @@
 import Layout from "../components/Layout";
 import axios from 'axios';
 import { useEffect, useState } from "react";
-import { baseUrl } from '../services/api';
+import { BASE_URL } from '../services/api';
 import ListAll from "../components/products/ListAll";
 import SortBy from "../components/products/SortBy"
 
@@ -17,7 +17,7 @@ export default function ProductsView() {
 
   async function getProducts() {
     try {
-      const response = await axios.get(`${baseUrl}/products`);
+      const response = await axios.get(`${BASE_URL}/products`);
       setProducts(response.data);
       setIsLoading(false);
     } catch (error) {

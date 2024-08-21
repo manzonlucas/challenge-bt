@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import axios from "axios";
-import { baseUrl } from '../services/api';
+import { BASE_URL } from '../services/api';
 
 export default function CreateProduct() {
 
@@ -16,7 +16,7 @@ export default function CreateProduct() {
 
   async function getCategories() {
     try {
-      const response = await axios.get(`${baseUrl}/categories`);
+      const response = await axios.get(`${BASE_URL}/categories`);
       setCategories(response.data);
     } catch (error) {
       console.log(error);
@@ -36,7 +36,7 @@ export default function CreateProduct() {
 
   async function postProduct(product) {
     try {
-      const response = await axios.post(`${baseUrl}/products`, product,
+      const response = await axios.post(`${BASE_URL}/products`, product,
         { headers: { "Content-Type": 'application/json' } });
       console.log(response);
       setPayload({ category: 1 });
