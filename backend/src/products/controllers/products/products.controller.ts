@@ -8,7 +8,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { query } from 'express';
-import { CreateProductDto } from 'src/products/dtos/createProduct.dto';
+import { CreateProductDto } from 'src/products/dtos/CreateProduct.dto';
 import { ProductsService } from 'src/products/services/products/products.service';
 
 @Controller('products')
