@@ -13,11 +13,12 @@ import { ProductsService } from 'src/products/services/products/products.service
 
 @Controller('products')
 export class ProductsController {
-  constructor(private productsService: ProductsService) {}
+  constructor(private productsService: ProductsService) { }
 
   @Get()
   getProducts() {
-    return this.productsService.fetchProducts();
+    return { message: 'testing' }
+    // return this.productsService.fetchProducts();
   }
 
   // example route with the correct query format:
